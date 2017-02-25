@@ -15,11 +15,7 @@ public class EarthquakeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.earthquake_activity);
 
-        ArrayList<Word> earthquakes = new ArrayList<>();
-        earthquakes.add(new Word("7.4","New Delhi","7th July"));
-        earthquakes.add(new Word("5.6","London","8th September"));
-        earthquakes.add(new Word("3.5","Austria","9th august"));
-        earthquakes.add(new Word("6.5","Texas","1st December"));
+        ArrayList<Word> earthquakes = QueryUtils.extractEarthquakes();
 
         ListView list =(ListView) findViewById(R.id.list);
         WordAdapter adapter = new WordAdapter(this,earthquakes);
