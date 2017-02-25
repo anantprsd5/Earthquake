@@ -8,7 +8,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import static java.lang.Long.getLong;
 
@@ -55,8 +58,10 @@ public final class QueryUtils {
                 Double mag = magnitude.getDouble("mag");
                 String place = magnitude.getString("place");
                 long time = magnitude.getLong("time");
-                String strTime = Long.toString(time);
-                earthquakes.add(new Word(mag.toString(), place, strTime));
+                Date dateObject = new Date(time);
+                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM DD,yyyy\n h:mm a", Locale.ENGLISH);
+                String dateToDisplay = dateFormat.format(dateObject);
+                earthquakes.add(new Word(mag.toString(), place, dateToDisplay));
 
             }
 
