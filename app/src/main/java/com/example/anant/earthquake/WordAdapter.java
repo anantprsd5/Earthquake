@@ -14,11 +14,18 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import static com.example.anant.earthquake.R.id.landmark;
+import static com.example.anant.earthquake.R.id.location;
+
 /**
  * Created by anant on 22/2/17.
  */
 
 public class WordAdapter extends ArrayAdapter<Word> {
+
+    private String landmark;
+
+    private String location;
 
     private String formatDate(Date dateObject) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("LLL dd, yyyy");
@@ -47,8 +54,24 @@ public class WordAdapter extends ArrayAdapter<Word> {
         TextView magnitde = (TextView)listItemView.findViewById(R.id.magnitude);
         magnitde.setText(currentAndroid.getQuakeMagnitude());
 
-        TextView  place = (TextView)listItemView.findViewById(R.id.location);
-        place.setText(currentAndroid.getQuakeLocation());
+        String fullLocation = currentAndroid.getQuakeLocation();
+        if(fullLocation.contains("of")) {
+            String[] locArray = fullLocation.split("of");
+            landmark = locArray[0]+"\n Of";
+            location = locArray[1];
+        }
+
+        else{
+            landmark = "Near the";
+            location=fullLocation;
+        }
+
+        TextView landmarkLoc = (TextView) listItemView.findViewById(R.id.landmark);
+        landmarkLoc.setText(landmark);
+
+        TextView locLoc = (TextView) listItemView.findViewById(R.id.location);
+        locLoc.setText(location);
+
 
         Date dateObject = new Date(currentAndroid.getQuakeTime());
 
