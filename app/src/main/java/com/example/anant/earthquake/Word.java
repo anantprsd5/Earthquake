@@ -10,12 +10,12 @@ public class Word {
 
     private String quakeLocation;
 
-    private String quakeDate;
+    private long timeInMilliSeconds;
 
-    public Word(String mQuakeMagnitude, String mQuakeLocation, String mQuakeDate){
+    public Word(String mQuakeMagnitude, String mQuakeLocation, long mtimeInMilliSeconds){
         quakeMagnitude = mQuakeMagnitude;
+        timeInMilliSeconds = mtimeInMilliSeconds;
         quakeLocation = mQuakeLocation;
-        quakeDate = mQuakeDate;
     }
 
     public String getQuakeMagnitude(){
@@ -26,9 +26,7 @@ public class Word {
         return quakeLocation;
     }
 
-    public String getQuakeDate(){
-        return quakeDate;
-    }
+    public long getQuakeTime(){ return timeInMilliSeconds; }
 
 
 }

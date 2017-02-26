@@ -1,19 +1,14 @@
 package com.example.anant.earthquake;
 
-import android.os.Build;
-import android.support.annotation.RequiresApi;
+
+
 import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-
-import static java.lang.Long.getLong;
 
 /**
  * Helper methods related to requesting and receiving earthquake data from USGS.
@@ -58,10 +53,7 @@ public final class QueryUtils {
                 Double mag = magnitude.getDouble("mag");
                 String place = magnitude.getString("place");
                 long time = magnitude.getLong("time");
-                Date dateObject = new Date(time);
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MMM DD,yyyy\n h:mm a", Locale.ENGLISH);
-                String dateToDisplay = dateFormat.format(dateObject);
-                earthquakes.add(new Word(mag.toString(), place, dateToDisplay));
+                earthquakes.add(new Word(mag.toString(), place, time));
 
             }
 
